@@ -3,13 +3,14 @@
   "description": "A tiny event source. Event handlers are removed on each fire.",
   "main": "oneTimeEvent.es5.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "babel-node test.js",
+    "build": "babel oneTimeEvent.js > oneTimeEvent.es5.js"
   },
   "repository": {
     "type": "git",
-    "url": "git@drubn.de:one-time-event"
+    "url": "https://public@git.drubn.de/one-time-event"
   },
-  "author": "",
+  "author": "Christoph Müller <iblzm@hotmail.de>",
   "license": "ISC",
   "dependencies": {},
   "version": "4.1.3",
