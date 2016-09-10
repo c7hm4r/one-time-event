@@ -1,7 +1,7 @@
 {
   "name": "one-time-event",
   "description": "A tiny event source. Event handlers are removed on each fire.",
-  "main": "oneTimeEvent.js",
+  "main": "oneTimeEvent.es5.js",
   "authors": [
     "Christoph Müller <iblzm@hotmail.de>"
   ],
