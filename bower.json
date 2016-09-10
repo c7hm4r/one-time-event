@@ -1,0 +1,21 @@
+{
+  "name": "one-time-event",
+  "description": "A tiny event source. Event handlers are removed on each fire.",
+  "main": "oneTimeEvent.js",
+  "authors": [
+    "Christoph Müller <iblzm@hotmail.de>"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "event"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
