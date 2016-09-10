@@ -14,7 +14,9 @@ Please avoid the following (in general):
 
 ## Contribute
 
-https://gitlab.com/cmueller/one-time-event
+https://github.com/2i/one-time-event
+
+Mirror: https://gitlab.com/cmueller/one-time-event
 
 ## License
 

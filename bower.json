@@ -9,7 +9,7 @@
   "keywords": [
     "event"
   ],
-  "homepage": "",
+  "homepage": "https://github.com/2i/one-time-event",
   "ignore": [
     "**/.*",
     "node_modules",
