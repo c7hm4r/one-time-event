@@ -10,7 +10,6 @@
     "event"
   ],
   "homepage": "",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
