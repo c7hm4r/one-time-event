@@ -14,6 +14,13 @@ Please avoid the following (in general):
 
 ## Contribute
 
+If you want to build the project or run the test, please replace `npm-shrinkwrap.json` by `npm-shrinkwrap.dev.json`. Then run `npm i` again.
+It is a work around for the multiple problems npm currently has with its npm-shrinkwrap.json files and dev dependencies (https://github.com/npm/npm/issues/6298).
+
+Build command: `npm run build`
+
+Test command: `npm run test`
+
 https://github.com/2i/one-time-event
 
 Mirror: https://gitlab.com/cmueller/one-time-event
