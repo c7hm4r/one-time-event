@@ -123,9 +123,13 @@
         if (!handler) {
           throw 'handler must be a function.';
         }
-        this._handlers.delete(handler);
-        if (this._lastRemoved && this._handlers.size === 0) {
-          this._lastRemoved();
+        if (this._lastRemoved && this._handlers.size === 1) {
+          this._handlers.delete(handler);
+          if (this._handlers.size === 0) {
+            this._lastRemoved();
+          }
+        } else {
+          this._handlers.delete(handler);
         }
       }
     }, {
