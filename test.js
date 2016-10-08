@@ -25,9 +25,12 @@ test('it works', (t) => {
     lastRemovedPasses++;
   });
 
+  t.ok(e.isEmpty());
+
   t.equals(firstAddedPasses, 0, 'Nr. 1');
   e.pub.addHandler(handler0);
   t.equals(firstAddedPasses, 1, 'Nr. 2');
+  t.notOk(e.isEmpty());
   e.pub.addHandler(handler0);
   e.pub.addHandler(handler0);
   e.pub.addHandler(handler0);
