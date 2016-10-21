@@ -4,7 +4,7 @@ Simple `EventSource`-like object which removes all handlers after it is fired.
 
 ## Usage
 
-See `demo.js`.
+See [`demo.js`](https://github.com/2i/one-time-event/blob/master/demo.js).
 
 Please avoid the following (in general):
 
