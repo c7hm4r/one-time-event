@@ -13,7 +13,7 @@
   "author": "Christoph Müller <iblzm@hotmail.de>",
   "license": "ISC",
   "dependencies": {},
-  "version": "5.0.1",
+  "version": "5.0.2",
   "devDependencies": {
     "babel-cli": "6.11.4",
     "babel-polyfill": "6.13.0",
