@@ -13,12 +13,16 @@ function OneTimeEvent(firstAdded, lastRemoved) {
   this._handlers = [];
   this._handlersSet = {};
   this._count = 0;
+  this._untouched = true;
 
   this._firstAdded = firstAdded;
   this._lastRemoved = lastRemoved;
   this.pub = new OneTimeEventPub(this);
 }
 OneTimeEvent.prototype.fire = function fire() {
+  if (this._untouched) {
+    return;
+  }
   var currentHandlers = this._handlers;
   var currentHandlersSet = this._handlersSet;
   this._handlers = [];
@@ -51,8 +55,11 @@ OneTimeEvent.prototype.addHandler = function addHandler(handler) {
   }  
   this._handlersSet[handler] = 1;
   ++this._count;
-  if (this._firstAdded && this._count === 1) {
-    this._firstAdded();
+  if (this._count === 1) {
+    this._untouched = false;
+    if (this._firstAdded) {
+      this._firstAdded();
+    }
   }
 };
 OneTimeEvent.prototype.removeHandler = function removeHandler(handler) {
