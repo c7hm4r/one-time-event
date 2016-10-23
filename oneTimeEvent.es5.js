@@ -35,6 +35,9 @@
     this.pub = new OneTimeEventPub(this);
   }
   OneTimeEvent.prototype.fire = function fire() {
+    if (this._handlers.size === 0) {
+      return;
+    }
     var currentHandlers = Array.from(this._handlers);
     this._handlers.clear();
     var l = currentHandlers.length;
