@@ -58,3 +58,17 @@ test('it works', (t) => {
   t.equals(lastRemovedPasses, 1, 'Nr. 12');
   t.end();
 });
+
+test('handlers with same string representation are treated differently',
+    (t) => {
+  t.plan(2);
+  const e = newOneTimeEvent();
+  const handler = function () { t.pass(); };
+  const x = {};
+  const handler1 = handler.bind(x);
+  const handler2 = handler.bind(x);
+  e.addHandler(handler1);
+  e.addHandler(handler2);
+  e.fire();
+  t.end();
+});
