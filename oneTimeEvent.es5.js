@@ -29,62 +29,44 @@
   };
 
   function OneTimeEvent(firstAdded, lastRemoved) {
-    this._handlers = [];
-    this._handlersSet = {};
-    this._count = 0;
-
+    this._handlers = new Set();
     this._firstAdded = firstAdded;
     this._lastRemoved = lastRemoved;
     this.pub = new OneTimeEventPub(this);
   }
   OneTimeEvent.prototype.fire = function fire() {
-    var currentHandlers = this._handlers;
-    var currentHandlersSet = this._handlersSet;
-    this._handlers = [];
-    this._handlersSet = {};
-    if (this._count === 0) {
-      return;
-    }
-    this._count = 0;
+    var currentHandlers = Array.from(this._handlers);
+    this._handlers.clear();
     var l = currentHandlers.length;
-    for (var i = 0; i < l; ++i) {
-      var handler = currentHandlers[i];
-      if (currentHandlersSet[handler] === 1) {
-        handler.apply(undefined, arguments);
-      }
+    for (var i = 0; i < l; i++) {
+      currentHandlers[i].apply(undefined, arguments);
     }
   };
   OneTimeEvent.prototype.isEmpty = function isEmpty() {
-    return this._count === 0;
+    return this._handlers.size === 0;
   };
   OneTimeEvent.prototype.addHandler = function addHandler(handler) {
     if (!handler) {
       throw 'handler must be a function.';
     }
-    var handlersSetEntry = this._handlersSet[handler];
-    if (handlersSetEntry === 1) {
-      return;
-    }
-    if (handlersSetEntry !== 2) {
-      this._handlers.push(handler);
-    }
-    this._handlersSet[handler] = 1;
-    ++this._count;
-    if (this._firstAdded && this._count === 1) {
+    if (this._firstAdded && this._handlers.size === 0) {
+      this._handlers.add(handler);
       this._firstAdded();
+    } else {
+      this._handlers.add(handler);
     }
   };
   OneTimeEvent.prototype.removeHandler = function removeHandler(handler) {
     if (!handler) {
       throw 'handler must be a function.';
     }
-    var handlersSetEntry = this._handlersSet[handler];
-    if (handlersSetEntry === 1) {
-      --this._count;
-      this._handlersSet[handler] = 2;
-      if (this._lastRemoved && this._count === 0) {
+    if (this._lastRemoved && this._handlers.size === 1) {
+      this._handlers.delete(handler);
+      if (this._handlers.size === 0) {
         this._lastRemoved();
       }
+    } else {
+      this._handlers.delete(handler);
     }
   };
 
