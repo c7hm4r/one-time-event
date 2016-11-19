@@ -19,11 +19,21 @@ OneTimeEvent.prototype.fire = function fire() {
   if (this._handlers.size === 0) {
     return;
   }
+
+  // From https://github.com/vuejs/vue/blob/4995ce5a6c99277aa73fbf4d344a56c5b28f91af/src/core/observer/array.js#L27
+  // Copying arguments in new array first is faster than simply applying arguments object
+  // https://jsperf.com/closure-with-arguments
+  var i = arguments.length
+  const args = new Array(i)
+  while (i--) {
+    args[i] = arguments[i]
+  }
+
   var currentHandlers = Array.from(this._handlers);
   this._handlers.clear();
   var l = currentHandlers.length;
-  for (var i = 0; i < l; i++) {
-    currentHandlers[i].apply(undefined, arguments);
+  for (i = 0; i < l; i++) {
+    currentHandlers[i].apply(undefined, args);
   }
 };
 OneTimeEvent.prototype.isEmpty = function isEmpty() {
