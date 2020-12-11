@@ -13,7 +13,7 @@
   "author": "Christoph Müller <iblzm@hotmail.de>",
   "license": "ISC",
   "dependencies": {},
-  "version": "5.0.5",
+  "version": "5.0.6",
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-plugin-transform-es2015-modules-umd": "6.24.1",
